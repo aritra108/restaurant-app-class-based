@@ -1,25 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import { Navbar, NavbarBrand } from 'reactstrap';
 import Menu from './components/MenuComponent'; // Importing the custom Menu component
 import './App.css';
+import { DISHES } from './shared/dishes';
 
-function App() {
-  return (
-    <div>
+class App extends Component {
 
-      <Navbar dark color = "primary">
-        <div className = "container">
-          <NavbarBrand href = "/">Ristorante Con Fusion</NavbarBrand>
-        </div>
-      </Navbar>
+  constructor(props) {
+    super(props);
 
-      {/* Our custom menu component */}
-      <Menu />
+    this.state = {
+      dishes: DISHES
+    };
+  }
 
-
-    </div>
-  );
+  render() {
+    return (
+      <div>
+  
+        <Navbar dark color = "primary">
+          <div className = "container">
+            <NavbarBrand href = "/">Ristorante Con Fusion</NavbarBrand>
+          </div>
+        </Navbar>
+  
+        {/* Our custom menu component, this.state.dishes is the props passed to the child component */}
+        <Menu dishes = {this.state.dishes} /> 
+  
+  
+      </div>
+    );
+  }
+  
 }
 
 export default App;
